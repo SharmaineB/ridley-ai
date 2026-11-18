@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: ridley-ai
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DEMO_MODE
+        value: "true"
+      - key: DATABASE_URL
+        value: sqlite:///./ridley.db
+      - key: CHROMA_PATH
+        value: ./chroma_data
+      - key: OPENAI_API_KEY
+        sync: false
